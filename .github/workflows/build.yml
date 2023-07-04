@@ -1,0 +1,15 @@
+name: "Build"
+on:
+  workflow_dispatch:
+jobs:
+  Build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+      - name: get-cmake
+        uses: lukka/get-cmake@v3.26.4
+      - name: cmake-configure
+        run: echo "cmake -B build -S contrib"
+      - name: cmake-build
+        run: echo "cmake --build build --config Release"
