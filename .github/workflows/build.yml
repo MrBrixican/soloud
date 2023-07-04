@@ -15,3 +15,8 @@ jobs:
       - name: cmake-build
         shell: powershell
         run: echo "cmake --build build --config Release"
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
