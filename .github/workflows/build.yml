@@ -10,6 +10,8 @@ jobs:
       - name: get-cmake
         uses: lukka/get-cmake@v3.26.4
       - name: cmake-configure
+        shell: powershell
         run: echo "cmake -B build -S contrib"
       - name: cmake-build
+        shell: powershell
         run: echo "cmake --build build --config Release"
