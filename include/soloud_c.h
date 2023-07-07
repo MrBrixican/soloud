@@ -169,6 +169,8 @@ void Soloud_destroy(Soloud * aSoloud);
 Soloud * Soloud_create();
 int Soloud_init(Soloud * aSoloud);
 int Soloud_initEx(Soloud * aSoloud, unsigned int aFlags /* = Soloud::CLIP_ROUNDOFF */, unsigned int aBackend /* = Soloud::AUTO */, unsigned int aSamplerate /* = Soloud::AUTO */, unsigned int aBufferSize /* = Soloud::AUTO */, unsigned int aChannels /* = 2 */);
+int Soloud_pause(Soloud * aSoloud);
+int Soloud_resume(Soloud * aSoloud);
 void Soloud_deinit(Soloud * aSoloud);
 unsigned int Soloud_getVersion(Soloud * aSoloud);
 const char * Soloud_getErrorString(Soloud * aSoloud, int aErrorCode);
