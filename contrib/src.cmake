@@ -99,7 +99,6 @@ set (AUDIOSOURCES_SOURCES
 	${AUDIOSOURCES_PATH}/sfxr/soloud_sfxr.cpp
 
 	# speech
-	${AUDIOSOURCES_PATH}/speech/Elements.def
 	${AUDIOSOURCES_PATH}/speech/darray.cpp
 	${AUDIOSOURCES_PATH}/speech/darray.h
 	${AUDIOSOURCES_PATH}/speech/klatt.cpp
@@ -244,6 +243,20 @@ if (SOLOUD_BACKEND_WASAPI)
 	)
 endif()
 
+if (SOLOUD_BACKEND_MINIAUDIO)
+	add_definitions (-DWITH_MINIAUDIO)
+
+	set (BACKENDS_SOURCES
+		${BACKENDS_SOURCES}
+		${BACKENDS_PATH}/miniaudio/soloud_miniaudio.cpp
+	)
+
+	set (BACKENDS_SOURCES
+		${BACKENDS_SOURCES}
+		${BACKENDS_PATH}/miniaudio/miniaudio.h
+	)
+endif()
+
 # Filters
 set (FILTERS_PATH ${SOURCE_PATH}/filter)
 set (FILTERS_SOURCES
@@ -287,7 +300,7 @@ if (SOLOUD_C_API)
 endif()
 
 if (SOLOUD_DYNAMIC)
-	add_library(${TARGET_NAME} ${TARGET_SOURCES})
+	add_library(${TARGET_NAME} SHARED ${TARGET_SOURCES})
 endif ()
 
 if (SOLOUD_STATIC)
