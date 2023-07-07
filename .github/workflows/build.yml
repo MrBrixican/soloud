@@ -3,18 +3,24 @@ on:
   workflow_dispatch:
 jobs:
   Build:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+          - os: macos-latest
+          - os: ubuntu-latest
+    runs-on: ${{matrix.os}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
-      - name: get-cmake
+      - name: Get CMake
         uses: lukka/get-cmake@v3.26.4
-      - name: cmake-configure
+      - name: CMake Configure
         run: cmake -B build -S contrib
-      - name: cmake-build
+      - name: CMake Build
         run: cmake --build build --config Release
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build
+          name: ${{matrix.os}}-build
           path: build
